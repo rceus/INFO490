@@ -24,13 +24,15 @@ try:
 
     for tweet in ts.search_tweets_iterable(tso):
         print( '%s : %s : %s' % ( tweet['user']['screen_name'], tweet['created_at'], tweet['retweet_count']) )
-        c.writerow(tweet['created_at'])
+        ts =  tweet['created_at']
+        c.writerow([ts[:3], tweet['retweet_count']])
         number = number+1
 
     print "Total Number of Links:", number
 
     #part1: order by retweet count
     #part2: make a csv file of it: just timestamps (done)
+    #mid23: add tweets per day and show them 
     #part3: take the data from the csv file to make a scatter plot
 
 except TwitterSearchException as e: # take care of all those ugly errors if there are some
